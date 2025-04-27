@@ -3,13 +3,50 @@ if ($_SERVER['REQUEST_METHOD'] =='POST'){
     $total_questions = intval($_POST['text_total_questions']) ?? 10;
 
     prepare_game($total_questions);
-    header('Location: index.php?route=game');
+    header(header: 'Location: index.php?route=game');
     exit;
 }
 function prepare_game($total_questions){
 
-    global $capitals;
-    
+        global $capitals;
+        $ids = [];
+        while(count($ids) < $total_questions){
+            $id= rand(0, count($capitals) -1);
+            if(!in_array($id, $ids)){
+                $ids[] = $id;
+            }  
+        }
+
+        $question = [];
+        foreach($ids as $id){
+            $answres = [];
+            $answres[] = $id;
+            while(count($answres) < 3){
+                $tmp = rand(0, count($capitals) -1);
+                if(!in_array($tmp, $answres)){
+                    $answres[] = $tmp;
+            }
+        }
+
+        shuffle($answres);
+
+        $question[] = [
+            'question'=> $capitals[0],
+            'correct_answer'=> $id,
+            'answers'=> $answres
+        ];
+    }
+
+    $_SESSION['questions'] = $question;
+
+    $_SESSION['game'] = [
+        'total_questions' => $total_questions,
+        'current_question' => 0,
+        'correct_answers' => 0,
+        'incorrect_qanswers' => 0,
+
+
+    ];
 }
 
 ?>
