@@ -20,7 +20,7 @@ $incorrect_answers = $_SESSION['game']['incorrect_answers'];
             </div>
 
             <div class="text-center mt-4">
-                <a href="index.php?route=start" class="btn btn-outline-danger w-50 py-3 rounded-pill">Jogar novamente</a>
+                <a href="index.php?route=start" class="btn btn-outline-success w-50 py-3 rounded-pill">Jogar novamente</a>
             </div>
         </div>
     </div>
@@ -48,16 +48,16 @@ $incorrect_answers = $_SESSION['game']['incorrect_answers'];
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .btn-outline-danger {
-        border-color: #dc3545;
-        color: #dc3545;
+    .btn-outline-success {
+        border-color:rgb(21, 255, 0);
+        color: rgb(21, 255, 0);
         font-weight: 600;
         text-transform: uppercase;
         transition: all 0.3s ease;
     }
 
-    .btn-outline-danger:hover {
-        background-color: #dc3545;
+    .btn-outline-success:hover {
+        background-color: rgb(21, 255, 0);
         color: white;
         transform: scale(1.05);
     }
@@ -78,7 +78,7 @@ $incorrect_answers = $_SESSION['game']['incorrect_answers'];
     }
 
     .text-danger {
-        color: #dc3545 !important;
+        color: rgb(255, 0, 0) !important;
     }
 
     hr {

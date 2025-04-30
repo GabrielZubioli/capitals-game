@@ -73,7 +73,7 @@ function prepare_game($total_questions)
                         <div class="col-10 col-md-8">
                             <div class="mb-3">
                                 <label for="text_total_questions" class="form-label text-muted fs-5">Número de questões</label>
-                                <input type="number" class="form-control form-control-lg text-center" id="text_total_questions" name="text_total_questions" value="10" min="1" max="20">
+                                <input type="number" class="form-control form-control-lg text-center" id="text_total_questions" name="text_total_questions" value="10" min="3" max="20">
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,6 @@ function prepare_game($total_questions)
 
     }
     .container {
-        
         max-width: 1000px;
         text-align: center;
     }

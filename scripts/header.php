@@ -20,8 +20,6 @@
         background-attachment: fixed;
 
         background: linear-gradient(90deg, rgba(226, 226, 226, 0.9), rgba(201, 214, 255, 0.9)), url('../data/imagens/mapa.png');
-        background-size: cover;
-        background-position: center;
     }
 
     .container {
