@@ -70,8 +70,22 @@ $answers = $_SESSION['questions'][$current_question]['answers'];
 <script>
     document.querySelectorAll("[id^='answer_']").forEach(element => {
         element.addEventListener('click', () => {
-            let id = element.id.split('_')[1];
-            window.location.href = `index.php?route=game&answer=${id}`;
+            const id = element.id.split('_')[1];
+            const correctAnswer = <?= array_search($_SESSION['questions'][$current_question]['correct_answer'], $answers) ?>;
+
+            document.querySelectorAll("[id^='answer_']").forEach((el, idx) => {
+                if (idx == correctAnswer) {
+                    el.style.backgroundColor = '#2ecc71';
+                    el.style.color = 'white';
+                } else {
+                    el.style.backgroundColor = '#dc3545';
+                    el.style.color = 'white';
+                }
+                el.style.pointerEvents = 'none';
+            });
+            setTimeout(() => {
+                window.location.href = `index.php?route=game&answer=${id}`;
+            }, 1000);
         });
     });
 </script>
@@ -139,7 +153,7 @@ $answers = $_SESSION['questions'][$current_question]['answers'];
     }
 
     .text-success {
-        color: #28a745 !important;
+        color: #2ecc71 !important;
     }
 
     .text-danger {
@@ -150,4 +164,13 @@ $answers = $_SESSION['questions'][$current_question]['answers'];
         border: 1px solid #007bff;
         margin: 10px 0;
     }
+    .correct {
+    background-color: #2ecc71 !important;
+    color: white !important;
+}
+.incorrect {
+    background-color: #dc3545 !important;
+    color: white !important;
+}
+
 </style>

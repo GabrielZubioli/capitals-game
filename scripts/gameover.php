@@ -49,15 +49,15 @@ $incorrect_answers = $_SESSION['game']['incorrect_answers'];
     }
 
     .btn-outline-success {
-        border-color:rgb(21, 255, 0);
-        color: rgb(21, 255, 0);
+        border-color: #2ecc71;
+        color: #2ecc71;
         font-weight: 600;
         text-transform: uppercase;
         transition: all 0.3s ease;
     }
 
     .btn-outline-success:hover {
-        background-color: rgb(21, 255, 0);
+        background-color: #2ecc71;
         color: white;
         transform: scale(1.05);
     }
@@ -74,7 +74,7 @@ $incorrect_answers = $_SESSION['game']['incorrect_answers'];
     }
 
     .text-success {
-        color: #28a745 !important;
+        color: #2ecc71 !important;
     }
 
     .text-danger {
