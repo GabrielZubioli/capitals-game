@@ -3,7 +3,7 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $total_questions = intval($_POST['text_total_questions']) ?? 10;
+$total_questions = intval($_POST['text_total_questions'] ?? 10);
 
     prepare_game($total_questions);
 
@@ -51,6 +51,7 @@ function prepare_game($total_questions)
         'current_question' => 0,
         'correct_answers' => 0,
         'incorrect_answers' => 0,
+        'hint_used' => false
     ];
 }
 

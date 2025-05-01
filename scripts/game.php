@@ -32,6 +32,8 @@ $incorrect_answers = $_SESSION['game']['incorrect_answers'];
 
 $country = $_SESSION['questions'][$current_question]['question'];
 $answers = $_SESSION['questions'][$current_question]['answers'];
+$hint_used = $_SESSION['game']['hint_used'];
+
 
 ?>
 
@@ -58,10 +60,11 @@ $answers = $_SESSION['questions'][$current_question]['answers'];
                     <div class="answer-option" id="answer_2"><?= $capitals[$answers[2]][1] ?></div>
                 </div>
 
-                <div class="text-center">
-                    <a href="index.php?route=start" class="btn btn-outline-danger w-50 py-2 rounded-pill">Desistir</a>
-                </div>
+            <div class="d-flex justify-content-between align-items-center">
+                <button class="btn btn-warning rounded-pill px-4 py-2 w-50 me-2" id="hint-btn" <?= $hint_used ? 'disabled' : '' ?>><?= $hint_used ? 'Dica usada ✅' : 'Dica 💡' ?></button>
 
+                <a href="index.php?route=start" class="btn btn-outline-danger rounded-pill px-4 py-2 w-50">Desistir</a>
+            </div>
             </div>
         </div>
     </div>
@@ -88,6 +91,23 @@ $answers = $_SESSION['questions'][$current_question]['answers'];
             }, 1000);
         });
     });
+
+    const hintBtn = document.getElementById("hint-btn");
+
+hintBtn.addEventListener("click", () => {
+    const correctIndex = <?= array_search($_SESSION['questions'][$current_question]['correct_answer'], $answers) ?>;
+
+    let incorrectIndexes = [0, 1, 2].filter(i => i !== correctIndex);
+    let randomIndex = incorrectIndexes[Math.floor(Math.random() * incorrectIndexes.length)];
+
+    document.getElementById(`answer_${randomIndex}`).style.visibility = "hidden";
+    hintBtn.disabled = true;
+    hintBtn.innerText = "Dica usada ✅";
+
+    fetch('hint.php');
+});
+
+
 </script>
 
 <style>
@@ -123,15 +143,14 @@ $answers = $_SESSION['questions'][$current_question]['answers'];
     }
 
     .btn-outline-danger {
-        border-color: #dc3545;
-        color: #dc3545;
+        background-color: #dc3545;
+        color: white;
         font-weight: 600;
         text-transform: uppercase;
     }
 
     .btn-outline-danger:hover {
-        background-color: #dc3545;
-        color: white;
+        opacity: 0.9;
     }
 
     h3.text-primary {
@@ -162,10 +181,22 @@ $answers = $_SESSION['questions'][$current_question]['answers'];
     .correct {
     background-color: #2ecc71 !important;
     color: white !important;
-}
-.incorrect {
-    background-color: #dc3545 !important;
-    color: white !important;
-}
+    }
+    .incorrect {
+        background-color: #dc3545 !important;
+        color: white !important;
+    }
+    #hint-btn {
+        font-weight: 600;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    #hint-btn:disabled {
+        background-color: #ffc107 !important;
+        color: #333 !important;
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+
 
 </style>
