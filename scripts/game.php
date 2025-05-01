@@ -97,11 +97,6 @@ $answers = $_SESSION['questions'][$current_question]['answers'];
         font-family: "Poppins", sans-serif;
     }
 
-    body {
-        background-color: #f8f9fa;
-        font-family: 'Arial', sans-serif;
-    }
-
     .card {
         background-color: #fff;
         border-radius: 15px;
@@ -121,7 +116,7 @@ $answers = $_SESSION['questions'][$current_question]['answers'];
     }
 
     .answer-option:hover {
-        background-color: #0056b3;
+        background-color: #007bff;
         transform: scale(1.05);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         color: #fff;
